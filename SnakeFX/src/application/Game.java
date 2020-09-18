@@ -8,7 +8,6 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -34,11 +33,12 @@ public class Game {
 	private AnimationTimer timer;
 	private GraphicsContext graphicsContext;
 	private int scoreResult = 0;
-	private TextArea text;
 
-	public Game(TextArea text) {
-		this.text = text;
+	public Game() {
 		reset();
+	}
+
+	public void run() {
 		newFood();
 
 		VBox root = new VBox();
@@ -56,7 +56,6 @@ public class Game {
 		snakeStage.setScene(scene);
 		snakeStage.setTitle("SNAKE GAME");
 		snakeStage.show();
-
 	}
 
 	private void reset() {
@@ -129,7 +128,7 @@ public class Game {
 			graphicsContext.setFill(Color.RED);
 			graphicsContext.setFont(new Font("", 50));
 			graphicsContext.fillText("GAME OVER", 100, 250);
-			text.setText(String.valueOf(getScoreResult()));
+			// text.setText(String.valueOf(getScoreResult()));
 			timer.stop();
 			return;
 		}
@@ -176,7 +175,7 @@ public class Game {
 	private void eatFood() {
 		// eat food
 		if (foodX == snake.get(0).x && foodY == snake.get(0).y) {
-			snake.add(new Corner(1, 1));
+			snake.add(new Corner(-1, -1));
 			scoreResult++;
 			newFood();
 		}
