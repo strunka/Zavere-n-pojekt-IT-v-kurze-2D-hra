@@ -4,12 +4,14 @@ public class Player {
 
 	private String meno;
 	private int score;
-	private int id;
 
-	public Player(int id, String meno, int score) {
-		this.id = id;
+	public Player(String meno, int score) {
 		this.meno = meno;
 		this.score = score;
+	}
+
+	public Player() {
+
 	}
 
 	public String getMeno() {
@@ -20,8 +22,9 @@ public class Player {
 		return score;
 	}
 
-	public int getId() {
-		return id;
+	@Override
+	public String toString() {
+		return "Player [meno=" + meno + ", score=" + score + "]";
 	}
 
 }

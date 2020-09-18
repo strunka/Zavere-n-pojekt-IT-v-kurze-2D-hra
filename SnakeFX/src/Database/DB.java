@@ -78,12 +78,10 @@ public class DB {
 		String sql = "select * from players";
 		try {
 			ResultSet rs = createStatement.executeQuery(sql);
-			int lineCounter = 0;
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String score = rs.getString("score");
-				lineCounter++;
-				System.out.println(lineCounter + ". |" + name + " | " + score + " | ");
+				System.out.println(name + " | " + score + " | ");
 			}
 		} catch (SQLException e) {
 			System.out.println("There is something wrong with showing all players.");
@@ -116,10 +114,9 @@ public class DB {
 			ResultSet rs = createStatement.executeQuery(sql);
 			players = new ArrayList<Player>();
 			while (rs.next()) {
-				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int score = rs.getInt("score");
-				Player actualPlayer = new Player(id, name, score);
+				Player actualPlayer = new Player(name, score);
 				players.add(actualPlayer);
 			}
 		} catch (SQLException e) {

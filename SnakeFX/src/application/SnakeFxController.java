@@ -22,11 +22,15 @@ public class SnakeFxController implements Initializable {
 		game = new Game();
 		game.run();
 
-		db.addPlayer("Rolo", 2);
+		// db.addNewPlayer(new Player("Lajos", 4));
 
-		db.showPlayersMeta();
-		System.out.println();
-		db.showAllPlayers();
+		for (int i = 0; i < db.getAllPlayers().size(); i++) {
+			System.out.println(db.getAllPlayers().get(i).getMeno() + " " + db.getAllPlayers().get(i).getScore());
+		}
+
+//		db.showPlayersMeta();
+//		System.out.println();
+//		db.showAllPlayers();
 	}
 
 	@Override
