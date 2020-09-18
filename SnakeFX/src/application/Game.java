@@ -74,7 +74,7 @@ public class Game {
 					continue start;
 				}
 			}
-			foodcolor = rand.nextInt(5);
+			foodcolor = rand.nextInt(6);
 			speed++;
 			break;
 		}
@@ -222,6 +222,9 @@ public class Game {
 			break;
 		case 4:
 			cc = Color.ORANGE;
+			break;
+		case 5:
+			cc = Color.GREEN;
 			break;
 		}
 		graphicsContext.setFill(cc);
