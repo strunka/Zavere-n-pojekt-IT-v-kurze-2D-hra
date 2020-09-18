@@ -29,6 +29,8 @@ public class Game {
 	private boolean gameOver = false;
 	private Random rand = new Random();
 
+	private String git = "skuska";
+
 	private Stage snakeStage;
 	private AnimationTimer timer;
 	private GraphicsContext graphicsContext;
