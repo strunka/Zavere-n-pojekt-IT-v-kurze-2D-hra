@@ -1,9 +1,11 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Database.DB;
+import Database.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +14,7 @@ import javafx.scene.control.TextArea;
 public class SnakeFxController implements Initializable {
 
 	@FXML
-	private TextArea textAreaScore;
+	private TextArea textArea;
 
 	Game game;
 	DB db = new DB();
@@ -22,20 +24,21 @@ public class SnakeFxController implements Initializable {
 		game = new Game();
 		game.run();
 
-		// db.addNewPlayer(new Player("Lajos", 4));
+		// db.addNewPlayer(new Player("Jozko", 4));
+		// db.removePlayer(new Player("Karol", 4));
 
-		for (int i = 0; i < db.getAllPlayers().size(); i++) {
-			System.out.println(db.getAllPlayers().get(i).getMeno() + " " + db.getAllPlayers().get(i).getScore());
-		}
-
-//		db.showPlayersMeta();
-//		System.out.println();
-//		db.showAllPlayers();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		ArrayList<Player> players = db.getAllPlayers();
+		String result = "";
+		int lineCounter = 0;
+		for (Player player : players) {
+			lineCounter++;
+			result += lineCounter + ". 	" + player.getMeno() + "	" + player.getScore() + "\n";
+			System.out.println(lineCounter + ". " + player.getMeno() + " " + player.getScore());
+		}
+		textArea.setText(result);
 	}
-
 }

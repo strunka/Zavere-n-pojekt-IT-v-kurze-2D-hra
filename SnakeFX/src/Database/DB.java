@@ -52,7 +52,7 @@ public class DB {
 		try {
 			ResultSet rs = dbmd.getTables(null, "APP", "PLAYERS", null);
 			if (!rs.next()) {
-				String sql = "create table players(name varchar(20), score varchar(20))";
+				String sql = "create table players(name varchar(20), score varchar(30))";
 				createStatement.execute(sql);
 			}
 		} catch (SQLException e) {
@@ -135,6 +135,17 @@ public class DB {
 			preparedStatement.execute();
 		} catch (SQLException e) {
 			System.out.println("There is something wrong with add new player to database.");
+			e.printStackTrace();
+		}
+	}
+
+	public void removePlayer(Player player) {
+		String sql = "delete from players where name = '" + player.getMeno() + "'";
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			System.out.println("There is something wrong with delete contacts from database.");
 			e.printStackTrace();
 		}
 	}
