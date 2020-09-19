@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import Database.DB;
+import Database.Player;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -29,15 +31,19 @@ public class Game {
 	private boolean gameOver = false;
 	private Random rand = new Random();
 
-	private String git = "skuska";
-
 	private Stage snakeStage;
 	private AnimationTimer timer;
 	private GraphicsContext graphicsContext;
 	private int scoreResult = 0;
+	private DB db = new DB();
+	private String playerName;
 
 	public Game() {
 		reset();
+	}
+
+	public Game(String playerName) {
+		this.playerName = playerName;
 	}
 
 	public void run() {
@@ -51,7 +57,7 @@ public class Game {
 		timer();
 
 		Scene scene = new Scene(root, width * cornersize, height * cornersize);
-		setMoveController(scene);
+		setMoveControl(scene);
 		initialShapeOfSnake();
 
 		snakeStage = new Stage();
@@ -108,7 +114,7 @@ public class Game {
 		snake.add(new Corner(width / 2, height / 2));
 	}
 
-	private void setMoveController(Scene scene) {
+	private void setMoveControl(Scene scene) {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			if (key.getCode() == KeyCode.W) {
 				direction = Dir.up;
@@ -130,7 +136,7 @@ public class Game {
 			graphicsContext.setFill(Color.RED);
 			graphicsContext.setFont(new Font("", 50));
 			graphicsContext.fillText("GAME OVER", 100, 250);
-			// text.setText(String.valueOf(getScoreResult()));
+			db.addNewPlayer(new Player(playerName, getScoreResult()));
 			timer.stop();
 			return;
 		}
@@ -245,6 +251,10 @@ public class Game {
 
 	public int getScoreResult() {
 		return scoreResult;
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
 	}
 
 }

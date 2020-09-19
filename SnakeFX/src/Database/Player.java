@@ -17,6 +17,10 @@ public class Player {
 		this.score = score;
 	}
 
+	public Player(String meno) {
+		this.meno = meno;
+	}
+
 	public String getMeno() {
 		return meno;
 	}

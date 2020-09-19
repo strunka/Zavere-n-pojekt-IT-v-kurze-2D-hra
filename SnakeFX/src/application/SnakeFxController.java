@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Database.DB;
 import Database.Player;
 import javafx.event.ActionEvent;
@@ -16,22 +18,39 @@ public class SnakeFxController implements Initializable {
 	@FXML
 	private TextArea textArea;
 
-	Game game;
-	DB db = new DB();
+	private Game game;
+	private DB db = new DB();
+	private ArrayList<Player> players;
+	private String playerName;
 
 	@FXML
 	public void btnNewGame(ActionEvent event) {
-		game = new Game();
+		playerName = JOptionPane.showInputDialog("Zadaj hracske meno");
+		game = new Game(playerName);
 		game.run();
-
-		// db.addNewPlayer(new Player("Jozko", 4));
-		// db.removePlayer(new Player("Karol", 4));
-
+		setTextArea();
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		ArrayList<Player> players = db.getAllPlayers();
+	@FXML
+	public void btnReset(ActionEvent event) {
+		for (Player player : players) {
+			db.removePlayer(new Player(player.getMeno()));
+		}
+		setTextArea();
+	}
+
+	@FXML
+	public void btnRefresh(ActionEvent event) {
+		setTextArea();
+	}
+
+	@FXML
+	public void btnQuit(ActionEvent event) {
+		System.exit(0);
+	}
+
+	public void setTextArea() {
+		players = db.getAllPlayers();
 		String result = "";
 		int lineCounter = 0;
 		for (Player player : players) {
@@ -40,5 +59,10 @@ public class SnakeFxController implements Initializable {
 			System.out.println(lineCounter + ". " + player.getMeno() + " " + player.getScore());
 		}
 		textArea.setText(result);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		setTextArea();
 	}
 }

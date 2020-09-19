@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class DB {
 
-	private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDirver";
+	private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 	private static final String URL = "jdbc:derby:SnakeFxDB;create=true";
 	private static final String USERNAME = "";
 	private static final String PASSWORD = "";
