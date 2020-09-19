@@ -28,6 +28,7 @@ public class SnakeFxController implements Initializable {
 		playerName = JOptionPane.showInputDialog("Zadaj hracske meno");
 		game = new Game(playerName);
 		game.run();
+
 		setTextArea();
 	}
 
@@ -46,7 +47,7 @@ public class SnakeFxController implements Initializable {
 
 	@FXML
 	public void btnQuit(ActionEvent event) {
-		System.exit(0);
+		System.exit(arg0);
 	}
 
 	public void setTextArea() {
