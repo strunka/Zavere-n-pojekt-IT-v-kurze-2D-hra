@@ -113,19 +113,46 @@ public class Game {
 		snake.add(new Corner(width / 2, height / 2));
 		snake.add(new Corner(width / 2, height / 2));
 	}
-
+	/*
+	*setMove nastavuje klavesy pohybu
+	*/
 	private void setMoveControl(Scene scene) {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-			if (key.getCode() == KeyCode.W) {
+			
+			if (key.getCode() == KeyCode.W) { 	//hore
 				direction = Dir.up;
 			}
-			if (key.getCode() == KeyCode.A) {
+			if (key.getCode() == KeyCode.A) {	//vlavo
 				direction = Dir.left;
 			}
-			if (key.getCode() == KeyCode.S) {
+			if (key.getCode() == KeyCode.S) {	//dole
 				direction = Dir.down;
 			}
-			if (key.getCode() == KeyCode.D) {
+			if (key.getCode() == KeyCode.D) {	//vpravo
+				direction = Dir.right;
+			}
+			if (key.getCode() == KeyCode.UP) { 	//hore
+				direction = Dir.up;
+			}
+			if (key.getCode() == KeyCode.LEFT) {	//vlavo
+				direction = Dir.left;
+			}
+			if (key.getCode() == KeyCode.DOWN) {	//dole
+				direction = Dir.down;
+			}
+			if (key.getCode() == KeyCode.RIGHT) {	//vpravo
+				direction = Dir.right;
+			}
+			if (key.getCode() == KeyCode.KP_UP) { 	//hore
+				direction = Dir.up;
+			}
+			if (key.getCode() == KeyCode.KP_LEFT) {	//vlavo
+				direction = Dir.left;
+			}
+			if (key.getCode() == KeyCode.KP_DOWN) {	//dole
+				direction = Dir.down;
+			}
+			if (key.getCode() == KeyCode.KP_RIGHT) {//vpravo
 				direction = Dir.right;
 			}
 		});
